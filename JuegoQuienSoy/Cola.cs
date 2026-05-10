@@ -6,33 +6,49 @@ namespace WiW{
 	{
 
 		
-		private List<T> datos = new List<T>();
+		private Queue<T> datos;
+
+		public Cola()
+        {
+            datos = new Queue<T>();
+        }
+		public void Encolar(T elemento)
+        {
+            datos.Enqueue(elemento);
+        }
+		public T Desencolar()
+        {
+            if (EsVacia())
+            {
+                throw new InvalidOperationException("La cola está vacía");
+            }
+
+            return datos.Dequeue();
+        }
+		public T Primero()
+        {
+            if (EsVacia())
+            {
+                throw new InvalidOperationException("La cola está vacía");
+            }
+
+            return datos.Peek();
+        }
+		public bool EsVacia()
+        {
+            return datos.Count == 0;
+        }
+		public int Cantidad()
+        {
+            return datos.Count;
+        }
+		public void encolar(T elemento) => Encolar(elemento);
+
+        public T desencolar() => Desencolar();
+
+        public T tope() => Primero();
+
+        public bool esVacia() => EsVacia();
 		
-		public void encolar(T elem)
-		{
-			this.datos.Add(elem);
-		}
-		
-		public T desencolar()
-		{
-			T temp = this.datos[0];
-			this.datos.RemoveAt(0);
-			return temp;
-		}
-		
-		public T tope()
-		{
-			return this.datos[0];
-		}
-		
-		public bool esVacia()
-		{
-			return this.datos.Count == 0;
-		}
-		
-		public int cantidadElementos()
-		{
-			return this.datos.Count;
-		}
 	}
 }
