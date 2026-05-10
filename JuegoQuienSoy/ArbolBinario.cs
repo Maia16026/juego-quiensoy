@@ -42,14 +42,22 @@ namespace WiW{
 		}
 	
 		public bool esHoja() {
-			return this.hijoIzquierdo==null && this.hijoDerecho==null;
+		    return this.hijoIzquierdo==null && this.hijoDerecho==null;
 		}
-		
-		
-	
 		public int contarHojas() {
-			return 0;
+	        if (esHoja()) {
+			    return 1;
+			}
+			int izquierda = 0;
+			int derecha = 0;
+			if (this.hijoIzquierdo != null){
+			    izquierda = this.hijoIzquierdo.contarHojas();
+			}
+			if (this.hijoDerecho != null) {
+		        derecha = this.hijoDerecho.contarHojas();
+			}
+			return izquierda + derecha;
 		}
-		
+
 	}
 }
